@@ -17,4 +17,8 @@
             </li>
         @endforeach
     </ol>
+    @include('components.create-comment')
+    @foreach ($team->comments as $comment)
+        @include('components.comment')
+    @endforeach
 @endsection

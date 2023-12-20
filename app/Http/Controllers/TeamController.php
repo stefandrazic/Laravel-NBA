@@ -39,6 +39,7 @@ class TeamController extends Controller
     public function show(string $id)
     {
         $team = Team::find($id);
+        // $comments = $team->comments()->paginate(5);
         return view('pages.team', compact('team'));
     }
 

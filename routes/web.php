@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::get('/', function () {
 Route::resource('/teams', 'App\Http\Controllers\TeamController');
 Route::resource('/players', 'App\Http\Controllers\PlayerController');
 Route::resource('/auth', 'App\Http\Controllers\AuthController');
+Route::resource('/comments', 'App\Http\Controllers\CommentController');
 
 Route::middleware('notauthenticated')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin']);

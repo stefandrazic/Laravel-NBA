@@ -35,7 +35,7 @@ class AuthController extends Controller
         if (!auth()->attempt($credentials)) {
             return redirect('/login')->withErrors('Invadil credentials!');
         }
-        return redirect('/')->with('status', 'Successfully logged in!');
+        return redirect('/teams')->with('status', 'Successfully logged in!');
     }
 
     /**
@@ -76,6 +76,6 @@ class AuthController extends Controller
         FacadesSession::flush();
         Auth::logout();
 
-        return redirect('/')->with('status', 'Logged out!');
+        return redirect('/login')->with('status', 'Logged out!');
     }
 }
