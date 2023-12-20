@@ -8,4 +8,5 @@
             @include('components.team-card')
         @endforeach
     </div>
+    {{ $teams }}
 @endsection

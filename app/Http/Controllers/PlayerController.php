@@ -13,7 +13,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::all();
+        $players = Player::paginate(5);
         return view("pages.players", compact("players"));
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,12 @@ Route::get('/', function () {
 
 Route::resource('/teams', 'App\Http\Controllers\TeamController');
 Route::resource('/players', 'App\Http\Controllers\PlayerController');
+Route::resource('/auth', 'App\Http\Controllers\AuthController');
+
+Route::middleware('notauthenticated')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLogin']);
+    Route::get('/register', [AuthController::class, 'showRegister']);
+});
+Route::middleware('authenticated')->group(function () {
+    Route::get('/logout', [AuthController::class, 'destroy']);
+});

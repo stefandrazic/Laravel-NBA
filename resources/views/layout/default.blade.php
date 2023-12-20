@@ -7,9 +7,12 @@
 </title>
 
 <body>
+
     <div class="container">
         @include('components.navbar')
         <main class="mt-5 mb-5">
+            @include('components.errors')
+            @include('components.status')
             @yield('content')
         </main>
     </div>
