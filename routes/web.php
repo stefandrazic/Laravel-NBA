@@ -28,6 +28,7 @@ Route::resource('/comments', 'App\Http\Controllers\CommentController');
 Route::middleware('notauthenticated')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin']);
     Route::get('/register', [AuthController::class, 'showRegister']);
+    Route::get('/verify/{verify_string}', [AuthController::class, 'verify']);
 });
 Route::middleware('authenticated')->group(function () {
     Route::get('/logout', [AuthController::class, 'destroy']);
