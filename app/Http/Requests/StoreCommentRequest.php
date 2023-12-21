@@ -19,8 +19,8 @@ class StoreCommentRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'content' => 'min:2|required',
-            'team_id' => 'required|integer|exists:teams,id'
+            'content' => 'min:10|required',
+            'team_id' => 'required|integer|exists:teams,id',
         ];
     }
 }

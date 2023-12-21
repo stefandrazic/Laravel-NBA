@@ -43,11 +43,17 @@ class AuthController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+
         $user = User::create([
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($request->password),
         ]);
+        if ($user->id === 1) {
+            $user->isAdmin = true;
+            $user->save();
+        }
+
 
         return redirect('/login')->with('status', 'Successfully registred!');
     }

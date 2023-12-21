@@ -5,7 +5,7 @@
             <h3 class="mb-0">{{ $team->name }}</h3>
             <div class="mb-1 text-body-secondary">{{ $team->city }}</div>
             <p class="card-text mb-auto">{{ substr($team->adress, 0, 70) }}...</p>
-            <a href="/teams/{{ $team->id }}" class="icon-link gap-1 icon-link-hover stretched-link">
+            <a href="/teams/{{ $team->name }}" class="icon-link gap-1 icon-link-hover stretched-link">
                 Continue reading
                 <svg class="bi">
                     <use xlink:href="#chevron-right" />

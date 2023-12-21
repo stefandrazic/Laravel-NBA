@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BaseRequest extends FormRequest
 {
@@ -11,10 +12,9 @@ class BaseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (auth()->user()) true;
+        if (Auth::check()) return true;
         return false;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *

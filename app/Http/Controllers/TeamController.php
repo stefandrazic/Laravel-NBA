@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Models\Comment;
 use App\Models\Team;
+use Egulias\EmailValidator\Result\Reason\CommentsInIDRight;
 
 class TeamController extends Controller
 {
@@ -36,11 +38,12 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $name)
     {
-        $team = Team::find($id);
-        // $comments = $team->comments()->paginate(5);
-        return view('pages.team', compact('team'));
+        $team = Team::where('name', $name)->first();
+        $comments = $team->comments()->get();
+        // $comments = Comment::where('team_id', $id)->get();
+        return view('pages.team', compact('team', 'comments'));
     }
 
     /**

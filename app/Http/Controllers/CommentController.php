@@ -30,8 +30,8 @@ class CommentController extends Controller
     {
         $comment = Comment::create([
             'content' => $request->content,
-            'user_id' => auth()->user()->id,
-            'team_id' => $request->team_id
+            'team_id' => $request->team_id,
+            'user_id' => auth()->id(),
         ]);
         return redirect()->back()->with('status', 'Successfully commented!');
     }

@@ -36,9 +36,8 @@ class PlayerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Player $player)
     {
-        $player = Player::find($id);
         return view("pages.player", compact('player'));
     }
 
