@@ -28,6 +28,13 @@ class CommentController extends Controller
      */
     public function store(StoreCommentRequest $request)
     {
+        $string = strtolower($request->content);
+        $forbidenWords = ['hate', 'idiot', 'stupid'];
+        foreach ($forbidenWords as $word) {
+            if (str_contains($string, $word)) {
+                return redirect()->back()->withErrors("You can't use bad words here!");
+            }
+        }
         $comment = Comment::create([
             'content' => $request->content,
             'team_id' => $request->team_id,
