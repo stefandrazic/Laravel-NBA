@@ -34,6 +34,7 @@ Route::middleware('notauthenticated')->group(function () {
 });
 Route::middleware('authenticated')->group(function () {
     Route::get('/logout', [AuthController::class, 'destroy']);
+    Route::get('/create-article', [NewsController::class, 'showCreate']);
 });
 
 Route::middleware('forbiddenwords')->group(function () {

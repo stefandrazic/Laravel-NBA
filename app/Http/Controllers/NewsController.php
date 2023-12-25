@@ -12,6 +12,13 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function showCreate()
+    {
+        $teams = Team::all();
+        return view("pages.auth.create-article", compact("teams"));
+    }
+
     public function index()
     {
         $news = News::paginate(5);
@@ -23,7 +30,6 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -31,7 +37,13 @@ class NewsController extends Controller
      */
     public function store(StoreNewsRequest $request)
     {
-        //
+        $article = News::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => auth()->user()->id
+        ]);
+        $article->teams()->attach($request->teams);
+        $article->save();
     }
 
     /**
