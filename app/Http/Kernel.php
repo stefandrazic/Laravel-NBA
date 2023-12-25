@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\ForbiddenWordsMiddleware;
 use App\Http\Middleware\NotAuthMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'authenticated' => AuthMiddleware::class,
         'notauthenticated' => NotAuthMiddleware::class,
+        'forbiddenwords' => ForbiddenWordsMiddleware::class,
     ];
 }

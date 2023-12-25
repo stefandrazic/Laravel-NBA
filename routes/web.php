@@ -33,3 +33,7 @@ Route::middleware('notauthenticated')->group(function () {
 Route::middleware('authenticated')->group(function () {
     Route::get('/logout', [AuthController::class, 'destroy']);
 });
+
+Route::middleware('forbiddenwords')->group(function () {
+    Route::post('/comments', [CommentController::class, 'store']);
+});
