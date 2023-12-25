@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Mail\CommentReceived;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Mail;
 
 class CommentController extends Controller
 {
@@ -34,6 +36,10 @@ class CommentController extends Controller
             'team_id' => $request->team_id,
             'user_id' => auth()->id(),
         ]);
+        $comment->save();
+        $mailData = ['content' => $comment->content, 'user_name' => $comment->user->name];
+        $teamData = ['team_name' => $comment->team->name];
+        Mail::to($comment->team->email)->send(new CommentReceived($mailData, $teamData));
         return redirect()->back()->with('status', 'Successfully commented!');
     }
 
