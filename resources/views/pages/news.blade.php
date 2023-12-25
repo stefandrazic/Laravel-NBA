@@ -8,4 +8,5 @@
             @include('components.article-card')
         @endforeach
     </div>
+    {{ $news }}
 @endsection

@@ -1,0 +1,1 @@
+DB::table('news_teams')->insert(['article_id'=>1, 'team_id'=>1]);

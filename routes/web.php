@@ -39,3 +39,5 @@ Route::middleware('authenticated')->group(function () {
 Route::middleware('forbiddenwords')->group(function () {
     Route::post('/comments', [CommentController::class, 'store']);
 });
+
+Route::get('/news/teams/{name}', [NewsController::class, 'showTeam']);

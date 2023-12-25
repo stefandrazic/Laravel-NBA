@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Models\News;
+use App\Models\Team;
 
 class NewsController extends Controller
 {
@@ -13,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::paginate(5);
         return view('pages.news', compact('news'));
     }
 
@@ -64,5 +65,11 @@ class NewsController extends Controller
     public function destroy(News $news)
     {
         //
+    }
+
+    public function showTeam(string $name)
+    {
+        $news = Team::where('name', $name)->first()->news()->paginate(5);
+        return view('pages.news', compact('news'));
     }
 }
