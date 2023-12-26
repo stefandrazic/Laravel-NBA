@@ -42,3 +42,5 @@ Route::middleware('forbiddenwords')->group(function () {
 });
 
 Route::get('/news/teams/{name}', [NewsController::class, 'showTeam']);
+Route::get('/search', [NewsController::class, 'showSearch']);
+Route::post('/search', [NewsController::class, 'search']);

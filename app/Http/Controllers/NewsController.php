@@ -6,6 +6,8 @@ use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Models\News;
 use App\Models\Team;
+// use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -17,6 +19,19 @@ class NewsController extends Controller
     {
         $teams = Team::all();
         return view("pages.auth.create-article", compact("teams"));
+    }
+
+    public function showSearch()
+    {
+        return view('pages.search');
+    }
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $news = News::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('content', 'LIKE', "%{$search}%")->paginate(5);
+        return view("pages.news", compact("news"));
     }
 
     public function index()

@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Team;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+
+        $teamsWithNews = Team::has('news')->get();
+        View::share('teamsWithNews', $teamsWithNews);
     }
 }
