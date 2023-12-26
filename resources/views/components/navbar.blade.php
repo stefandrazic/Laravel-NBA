@@ -28,6 +28,9 @@
                     </li>
                 @else
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/create-article">Create article</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
                     </li>
                 @endif

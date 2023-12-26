@@ -44,6 +44,7 @@ class NewsController extends Controller
         ]);
         $article->teams()->attach($request->teams);
         $article->save();
+        return redirect('/news')->with('status', 'Thank you for publishing article on www.nba.com');
     }
 
     /**
